@@ -1,0 +1,32 @@
+{{ define "part_header" -}}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ .Title }}</title>
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
+	<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico'>
+</head>
+<body>
+{{- end }}
+
+
+{{ define "part_orgHeader" -}}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ .Title }}</title>
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/org.css">
+</head>
+<body>
+<header>
+	<nav id="main-menu" class="container">
+		<h1><small>Hackventura</small> {{ .Title }}</h1>
+		<a href="./">Výsledky</a>
+		<a href="teams">Týmy</a>
+		<a href="settings">Nastavení</a>
+	</nav>
+</header>
+
+{{ template "part_messageBox" . }}
+{{- end }}

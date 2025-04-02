@@ -1,0 +1,38 @@
+{{ define "orgDashboard" }}
+{{ template "part_orgHeader" . }}
+
+<script type="text/javascript">
+	function checkStateVersion() {
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.open("GET", "state-version", false); // false for synchronous request
+		xmlHttp.send(null);
+		if (xmlHttp.responseText != "{{.Version}}") {
+			window.location.reload();
+		}
+	}
+	setInterval(checkStateVersion, 1000);
+</script>
+
+<table class="table table-bordered table-striped" id="dashboard">
+<thead>
+	<tr><th>Tým</th>{{range .Targets}}<th>{{.Name}}<br><a href="http://{{.URL}}/"><code>{{.URL}}</code></a></th>{{end}}</tr>
+</thead>
+<tbody>
+	{{range .Teams}}
+	<tr>
+		<th>{{.Name}}</th>
+		{{range .Results}}
+			<td class="{{if .Completed}}success{{else if gt .Tries 0}}warning{{end}}">
+				{{if .Completed}}<b><span style="color: green; font-size: 30px;">&#10004;</span><br>{{.CompletedTime}}<br>{{end}}
+				Pokusů: {{.Tries}}
+				{{if .Completed}}</b>{{end}}
+			</td>
+		{{end}}
+	</tr>
+	{{end}}
+</tbody>
+</table>
+
+</body>
+</html>
+{{ end }}

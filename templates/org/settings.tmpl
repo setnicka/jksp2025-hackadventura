@@ -1,0 +1,32 @@
+{{ define "orgSettings" }}
+{{ template "part_orgHeader" . }}
+
+
+<div class="container">
+
+<h2>Gundabad – heslo</h2>
+
+<table class="table">
+<thead>
+	<tr><th>Heslo</th><th>Platnost od</th></tr>
+</thead>
+<tbody>
+	{{range .Gundabad}}
+	<tr>
+		<td><code>{{ .Password }}</code></td><td>{{ .From.Format "2006-01-02 15:04:05" }}</td>
+	</tr>
+	{{end}}
+</tbody>
+</table>
+
+<h2>Nové heslo</h2>
+<form method="post" class="form-inline">
+	<input type="text" name="gundabadPassword" placeholder="Nové heslo">
+	<input type="submit" class="btn btn-primary" value="Nastavit heslo">
+</form>
+
+</div>
+
+</body>
+</html>
+{{ end }}

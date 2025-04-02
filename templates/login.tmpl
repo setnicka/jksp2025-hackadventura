@@ -1,0 +1,137 @@
+{{ define "login" }}
+{{ template "part_header" . }}
+
+<style>
+/*basic reset */
+*{
+	margin: 0;
+	padding: 0;
+}
+
+/* Page settings */
+html {
+	width: 100%;
+	height: 100%;
+	background: radial-gradient(circle, #fff 0%, #aaa 100%) no-repeat;
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+body {
+	text-align: center;
+	display: table;
+	background: black;
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+
+canvas {display:block;}
+
+
+@keyframes cursor {
+	0% { opacity: 0; }
+	40% { opacity: 0; }
+	50% { opacity: 1; }
+	90% { opacity: 1; }
+	100% { opacity: 0; }
+}
+
+#loginForm {
+	position: absolute;
+	width: 100%;
+	top: 100px;
+	z-index : 1;
+	box-sizing: border-box;
+	vertical-align: middle;
+}
+
+#loginFormInternal {
+	margin: 0px auto;
+	z-index : 1;
+	box-sizing: border-box;
+	vertical-align: middle;
+	text-align: center;
+	color: white;
+}
+#loginFormInternal h1 {
+	font-variant: small-caps;
+	text-shadow: 0px 0px 20px white;
+}
+</style>
+
+
+<canvas id="c"></canvas>
+
+<div id="loginForm"><div id="loginFormInternal">
+  <h1>Přihlášení týmu</h1>
+  <form method="post" class="form-inline">
+    <input type="text" name="login" placeholder="Login" class="form-control">
+    <input type="password" name="password" placeholder="Heslo" class="form-control">
+    <input type="submit" value="Začít hackovat" class="btn btn-primary">
+  </form>
+  <div class="container" style="width: 400px; margin-top: 15px;">
+  {{ template "part_messageBox" . }}
+  </div>
+</div></div>
+
+<script>
+	// geting canvas by id c
+	var c = document.getElementById("c");
+	var ctx = c.getContext("2d");
+
+	//making the canvas full screen
+	c.height = window.innerHeight;
+	c.width = window.innerWidth;
+
+	// characters - taken from the unicode charset
+	var latin = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%";
+	var runes = "ᚠᚡᚢᚣᚤᚥᚦᚧᚨᚩᚪᚫᚬᚭᚮᚯᚰᚱᚲᚳᚴᚵᚶᚷᚸᚹᚺᚻᚼᚽᚾᚿᛀᛁᛂᛃᛄᛅᛆᛇᛈᛉᛊᛋᛌᛍᛎᛏᛐᛑᛒᛓᛔᛕᛖᛗᛘᛙᛚᛛᛜᛝᛞᛟᛠᛡᛢᛣᛤᛥᛦᛧᛨᛩᛪ᛫᛬᛭ᛮᛯᛰ";
+	//converting the string into an array of single characters
+	// matrix = latin.split("");
+	matrix = runes.split("");
+
+	var font_size = 18;
+	var interval = 50; //35
+	// var color = "#0F0"; // classic green
+	// var color = "#00F"; // blue
+	var color = "#E5B54A";
+
+	var columns = c.width / font_size; //number of columns for the rain
+	//an array of drops - one per column
+	var drops = [];
+	//x below is the x coordinate
+	//1 = y co-ordinate of the drop(same for every drop initially)
+	for(var x = 0; x < columns; x++) drops[x] = 1;
+
+	//drawing the characters
+	function draw() {
+		//Black BG for the canvas
+		//translucent BG to show trail
+		ctx.fillStyle = "rgba(0, 0, 0, 0.04)";
+		ctx.fillRect(0, 0, c.width, c.height);
+
+		ctx.fillStyle = color;
+		ctx.font = font_size + "px arial";
+		//looping over drops
+		for( var i = 0; i < drops.length; i++) {
+			//a random chinese character to print
+			var text = matrix[ Math.floor( Math.random() * matrix.length ) ];
+			//x = i*font_size, y = value of drops[i]*font_size
+			ctx.fillText(text, i * font_size, drops[i] * font_size);
+
+			//sending the drop back to the top randomly after it has crossed the screen
+			//adding a randomness to the reset to make the drops scattered on the Y axis
+			if( drops[i] * font_size > c.height && Math.random() > 0.975 )
+				drops[i] = 0;
+
+			//incrementing Y coordinate
+			drops[i]++;
+		}
+	}
+
+	setInterval(draw, interval);
+</script>
+</body>
+</html>
+{{ end }}

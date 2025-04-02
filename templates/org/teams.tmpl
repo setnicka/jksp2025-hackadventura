@@ -1,0 +1,42 @@
+{{ define "orgTeams" }}
+{{ template "part_orgHeader" . }}
+
+
+<div class="container">
+
+<table class="table">
+<thead>
+	<tr><th>Login</th><th>Název týmu</th><th colspan=2>Akce</th></tr>
+</thead>
+<tbody>
+	{{range .Teams}}
+	<tr>
+		<td>{{ .Login }}</td><td>{{ .Name }}</td>
+		<td>{{if .Passwd }}🔑&nbsp;{{else}}<i><small>[nenastaveno]</small></i>{{end}}
+		<form method="post" class="form-inline">
+			<input type="hidden" name="login" value="{{.Login}}">
+			<input type="password" name="setPassword" placeholder="Nové heslo">
+			<input type="submit" class="btn btn-primary" value="Nastavit heslo">
+		</form>
+		<td><form method="post" onsubmit="return confirm('Opravdu smazat tým {{.Name}}?');" class="form-inline">
+			<input type="hidden" name="deleteTeam" value="{{.Login}}">
+			<input type="submit" class="btn btn-danger" value="Smazat tým">
+		</form></td>
+		</td>
+	</tr>
+	{{end}}
+</tbody>
+</table>
+
+<h2>Přidat tým</h2>
+<form method="post" class="form-inline">
+	<input type="text" name="newTeamLogin" placeholder="Login">
+	<input type="text" name="newTeamName" placeholder="Název týmu">
+	<input type="submit" class="btn btn-primary" value="Přidat tým">
+</form>
+
+</div>
+
+</body>
+</html>
+{{ end }}
