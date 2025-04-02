@@ -1,0 +1,20 @@
+{{ define "hotelHacked" }}
+{{ template "hotelHeader" . }}
+
+{{/* všechny texty jsou v přepisu Tengwaru do UTF8 do volných codepointů Unicode
+  * Private Use Area characters U+e000 – U+e07d
+  * Viz: http://freetengwar.sourceforge.net/mapping.html */}}
+
+<div class="skript">
+  <img id="roklinka" src="static/roklinka.webp">
+
+  {{/* Vítejte v Roklince*/}}
+  <h1 class="green">  </h1>
+</div>
+
+<div class="skript">
+  {{ template "hotelBasen" }}
+</div>
+
+{{ template "hotelFooter" . }}
+{{ end }}

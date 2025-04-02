@@ -56,7 +56,9 @@ type targetS struct {
 // const baseDomain = "setnicka.cz:8080"
 const baseDomain = "localhost:8080"
 
-var targets = []targetS{}
+var targets = []targetS{
+	{Code: "hotel", Name: "Hotel", URL: "hotel." + baseDomain, Router: hotelRouter},
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 

@@ -1,0 +1,56 @@
+{{ define "hotelIndex" }}
+{{ template "hotelHeader" . }}
+
+{{/* všechny texty jsou v přepisu Tengwaru do UTF8 do volných codepointů Unicode
+   * Private Use Area characters U+e000 – U+e07d
+   * Viz: http://freetengwar.sourceforge.net/mapping.html */}}
+
+<div class="skript">
+  <img id="roklinka" src="static/roklinka.webp">
+
+{{ template "hotelBasen" }}
+
+  <br><br>
+
+{{ template "part_messageBox" . }}
+  <form method="POST">
+    {{/*Toto políčko ponechte zející prázdnotou:*/}}
+    <label>     <input name="a4" type="text" autocomplete="off"></label><br>
+    {{/*Přihlašovací jméno bez prvního písmenka:*/}}
+    <label>     <input name="a2" type="text" autocomplete="off"></label><br>
+    {{/*Český název tohoto místa:*/}}
+    <label>    <input name="a8" type="text" autocomplete="off"></label><br>
+    {{/*Heslo beze změny:*/}}
+    <label>   <input name="a7" type="text" autocomplete="off"></label><br>
+    {{/*Každý lichý znak hesla (od prvního):*/}}
+    <label>      <input name="a10" type="text" autocomplete="off"></label><br>
+    {{/*Přihlašovací jméno:*/}}
+    <label>  <input name="a3" type="text" autocomplete="off"></label><br>
+    {{/*Letopočet minulého léta:*/}}
+    <label>   <input name="a5" type="text" autocomplete="off"></label><br>
+    {{/*První polovina hesla:*/}}
+    <label>   <input name="a1" type="text" autocomplete="off"></label><br>
+    {{/*Zvrácené přihlašovací jméno odzadu:*/}}
+    <label>    <input name="a9" type="text" autocomplete="off"></label><br>
+    {{/*Druhý znak z hesla:*/}}
+    <label>    <input name="a6" type="text" autocomplete="off"></label><br>
+    {{/*Poslat listinu*/}}
+    <button> </button>
+  </form>
+</div>
+
+{{/* Správné odpovědi:
+   *   *(prázdné)*
+   *   hurinion
+   *   roklinka
+   *   elRoNdUvPLNOvous
+   *   eRNUPNvu
+   *   Thurinion
+   *   2021
+   *   elRoNdUv
+   *   noiniruhT
+   *   l
+   */}}
+
+{{ template "hotelFooter" . }}
+{{ end }}

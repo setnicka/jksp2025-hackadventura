@@ -27,6 +27,7 @@ type Team struct {
 	Name   string
 	Login  string
 	Passwd []byte // hashed by bcrypt
+	Hotel  resultHotel
 }
 
 // result for hack page
@@ -46,3 +47,13 @@ func (r *result) SetCompleted() {
 	r.Completed = true
 	r.CompletedTime = time.Now()
 }
+
+// Results for different hack pages
+type resultHotel result
+
+// when extra fields needed:
+//
+//	type ResultMoria struct {
+//		result
+//		RightAnswers int
+//	}
