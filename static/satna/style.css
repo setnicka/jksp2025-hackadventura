@@ -1,0 +1,43 @@
+body {
+	margin: 0px;
+	height: 100vh;
+	margin: 0px;
+	display: flex;
+
+	background-color: #001510;
+	background-image: url('divadlo.jpg');
+    background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+
+	font-variant: small-caps;
+}
+
+#box {
+	width: 300px;
+	margin: auto auto;
+	background-color: #021685;
+	border: 2px solid rgb(200, 255, 255);
+	border-radius: 15px;
+	box-shadow: 0px 0px 5px rgb(88, 60, 60);
+
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	align-items: center;
+	text-align: center;
+}
+
+#box h1 {
+	margin: 0px;
+	color: rgb(200, 255, 255);
+}
+
+#box form {
+	display: block;
+	width: 300px;
+}
+
+.text-success { color: rgb(200, 255, 255); }
+.text-danger { color: rgb(255, 62, 86); }
