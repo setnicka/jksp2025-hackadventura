@@ -87,17 +87,20 @@ canvas {display:block;}
 	// characters - taken from the unicode charset
 	var latin = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%";
 	var runes = "ᚠᚡᚢᚣᚤᚥᚦᚧᚨᚩᚪᚫᚬᚭᚮᚯᚰᚱᚲᚳᚴᚵᚶᚷᚸᚹᚺᚻᚼᚽᚾᚿᛀᛁᛂᛃᛄᛅᛆᛇᛈᛉᛊᛋᛌᛍᛎᛏᛐᛑᛒᛓᛔᛕᛖᛗᛘᛙᛚᛛᛜᛝᛞᛟᛠᛡᛢᛣᛤᛥᛦᛧᛨᛩᛪ᛫᛬᛭ᛮᛯᛰ";
+	var music = "𝅜𝅝𝅗𝅥𝅘𝅥𝅘𝅥𝅮𝅘𝅥𝅯𝅘𝅥𝅰𝅘𝅥𝅱𝅘𝅥𝅲♭♮♯𝄞𝄡𝄽𝄾𝄿𝅀𝅁𝅂";
 	//converting the string into an array of single characters
 	// matrix = latin.split("");
-	matrix = runes.split("");
+	// matrix = runes.split("");
+	matrix = [...music];
 
-	var font_size = 18;
+	var font_width = 25;
+	var font_height = 36;
 	var interval = 50; //35
 	// var color = "#0F0"; // classic green
 	// var color = "#00F"; // blue
 	var color = "#E5B54A";
 
-	var columns = c.width / font_size; //number of columns for the rain
+	var columns = c.width / font_width; //number of columns for the rain
 	//an array of drops - one per column
 	var drops = [];
 	//x below is the x coordinate
@@ -112,17 +115,17 @@ canvas {display:block;}
 		ctx.fillRect(0, 0, c.width, c.height);
 
 		ctx.fillStyle = color;
-		ctx.font = font_size + "px arial";
+		ctx.font = font_width + "px 'NotoMusic'";
 		//looping over drops
 		for( var i = 0; i < drops.length; i++) {
 			//a random chinese character to print
 			var text = matrix[ Math.floor( Math.random() * matrix.length ) ];
-			//x = i*font_size, y = value of drops[i]*font_size
-			ctx.fillText(text, i * font_size, drops[i] * font_size);
+			//x = i * font_width, y = value of drops[i] * font_height
+			ctx.fillText(text, i * font_width, drops[i] * font_height);
 
 			//sending the drop back to the top randomly after it has crossed the screen
 			//adding a randomness to the reset to make the drops scattered on the Y axis
-			if( drops[i] * font_size > c.height && Math.random() > 0.975 )
+			if( drops[i] * font_height > c.height && Math.random() > 0.975 )
 				drops[i] = 0;
 
 			//incrementing Y coordinate
