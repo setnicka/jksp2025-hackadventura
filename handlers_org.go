@@ -20,6 +20,9 @@ func orgRouter() *chi.Mux {
 	staticHandler := http.FileServer(NoListFileSystem{http.Dir(path.Join(staticDir, "/org"))})
 	r.Mount("/static/", http.StripPrefix("/static/", staticHandler))
 
+	globalStaticHandler := http.FileServer(NoListFileSystem{http.Dir(staticDir)})
+	r.Mount("/global-static/", http.StripPrefix("/global-static/", globalStaticHandler))
+
 	r.Route("/", func(r chi.Router) {
 		// r.Use(middleware.Logger)
 		r.Get("/", orgDashboardGet)

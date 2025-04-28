@@ -37,6 +37,9 @@ func newGameRouter(name string) *chi.Mux {
 	r.Mount("/static/", http.StripPrefix("/static/", staticHandler))
 	r.Handle("/favicon.ico", staticHandler)
 
+	globalStaticHandler := http.FileServer(NoListFileSystem{http.Dir(staticDir)})
+	r.Mount("/global-static/", http.StripPrefix("/global-static/", globalStaticHandler))
+
 	r.Get("/start-hry", loginGetHandler)
 	r.Post("/start-hry", loginPostHandler)
 	r.Get("/konec-hry", logoutHandler)
