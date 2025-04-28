@@ -106,15 +106,9 @@ func orgTeamsPost(w http.ResponseWriter, r *http.Request) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-type teamServiceResult struct {
-	Completed     bool
-	CompletedTime string
-	Tries         int
-}
-
 type teamResult struct {
 	Name    string
-	Results []teamServiceResult
+	Results []state.Result
 }
 
 type orgDashboardData struct {
@@ -136,10 +130,11 @@ func orgDashboardGet(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for _, team := range server.state.Teams {
-		res := teamResult{team.Name, []teamServiceResult{
-			{team.Hotel.Completed, team.Hotel.CompletedTime.Format("15:04:05"), team.Hotel.Tries},
-		}}
-		data.Teams = append(data.Teams, res)
+		results := []state.Result{}
+		for _, target := range targets {
+			results = append(results, target.GetState(team))
+		}
+		data.Teams = append(data.Teams, teamResult{team.Name, results})
 	}
 
 	executeTemplate(w, "orgDashboard", data)

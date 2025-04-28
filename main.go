@@ -47,17 +47,20 @@ var server *Server
 ////////////////////////////////////////////////////////////////////////////////
 
 type targetS struct {
-	Code   string
-	Name   string
-	URL    string
-	Router func() *chi.Mux
+	Code     string
+	Name     string
+	URL      string
+	Router   func() *chi.Mux
+	GetState func(t *state.Team) state.Result
 }
 
 // const baseDomain = "setnicka.cz:8080"
 const baseDomain = "localhost:8080"
 
 var targets = []targetS{
-	{Code: "hotel", Name: "Hotel", URL: "hotel." + baseDomain, Router: hotelRouter},
+	{Code: "hotel", Name: "Hotel", URL: "hotel." + baseDomain,
+		Router:   hotelRouter,
+		GetState: func(t *state.Team) state.Result { return t.Hotel.Result }},
 }
 
 ////////////////////////////////////////////////////////////////////////////////

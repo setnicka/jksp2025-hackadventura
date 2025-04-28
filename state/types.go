@@ -30,26 +30,26 @@ type Team struct {
 	Hotel  resultHotel
 }
 
-// result for hack page
-type result struct {
+// Result for hack page
+type Result struct {
 	Completed     bool
 	CompletedTime time.Time
 	Tries         int
 	LastTry       time.Time
 }
 
-func (r *result) AddTry() {
+func (r *Result) AddTry() {
 	r.Tries++
 	r.LastTry = time.Now()
 }
 
-func (r *result) SetCompleted() {
+func (r *Result) SetCompleted() {
 	r.Completed = true
 	r.CompletedTime = time.Now()
 }
 
 // Results for different hack pages
-type resultHotel result
+type resultHotel struct{ Result }
 
 // when extra fields needed:
 //
