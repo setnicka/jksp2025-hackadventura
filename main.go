@@ -58,6 +58,9 @@ type targetS struct {
 const baseDomain = "localhost:8080"
 
 var targets = []targetS{
+	{Code: "metal", Name: "Metal", URL: "metal." + baseDomain,
+		Router:   metalRouter,
+		GetState: func(t *state.Team) state.Result { return t.Metal.Result }},
 	{Code: "hotel", Name: "Hotel", URL: "hotel." + baseDomain,
 		Router:   hotelRouter,
 		GetState: func(t *state.Team) state.Result { return t.Hotel.Result }},

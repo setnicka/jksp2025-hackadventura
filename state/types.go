@@ -27,6 +27,7 @@ type Team struct {
 	Name   string
 	Login  string
 	Passwd []byte // hashed by bcrypt
+	Metal  resultMetal
 	Hotel  resultHotel
 }
 
@@ -49,6 +50,7 @@ func (r *Result) SetCompleted() {
 }
 
 // Results for different hack pages
+type resultMetal struct{ Result }
 type resultHotel struct{ Result }
 
 // when extra fields needed:
