@@ -1,0 +1,87 @@
+{{ define "cspHeader" }}
+<!DOCTYPE html>
+<html dir="ltr" lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parní Pochody</title>
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/csp_style.css">
+</head>
+
+<body class="uvodni-stranka">
+<div class="container">
+<header class="header mb-4">
+  <div class="header__top d-flex justify-content-between align-items-center py-2">
+    <nav class="header__top__nav">
+      <a href="#" class="btn btn-link text-decoration-none" data-bs-toggle="popover" title="O nás" data-bs-content="Country Sdružení Pára je tu s vámi už přes 100 let. Přidejte se k našim čundrům!">O nás</a>
+      <a href="#" class="btn btn-link text-decoration-none" data-bs-toggle="popover" title="Kontakt" data-bs-content="Hospoda u cesty, Arizona, USA. Hledejte kouřové signály.">Kontakt</a>
+      <a href="#" class="btn btn-link text-decoration-none" data-bs-toggle="popover" title="Infolinka" data-bs-content="Admin se ztratil v baru, infolinka dočasně mimo provoz. Zkuste poslat poštovního holuba.">Infolinka</a>
+    </nav>
+  </div>
+
+  <div class="header__main__btn text-center mt-3">
+    {{ if .Completed }}
+      <span class="d-block mb-2">Přihlášen: <strong>{{ .Name }}</strong></span>
+      <a href="/moje-csp" class="btn btn-primary">Moje-CSP</a>
+    {{ else }}
+      <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#loginModal">Přihlášení</button>
+    {{ end }}
+  </div>
+</header>
+
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">Přihlášení</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/" method="post" class="needs-validation" novalidate>
+          <div class="mb-3">
+            <label for="login" class="form-label">Login</label>
+            <input type="text" class="form-control" id="login" name="login" required>
+            <div class="invalid-feedback">Zadejte prosím svůj login.</div>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Heslo</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+            <div class="invalid-feedback">Zadejte prosím své heslo.</div>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Přihlásit se</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{ if .Message }}
+  <div class="alert alert-{{ .MessageType }} mt-3" role="alert">
+    {{ .Message }}
+  </div>
+{{ end }}
+</div>
+
+<script src="/static/bootstrap.bundle.min.js"></script>
+<script>
+  var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+  var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+    return new bootstrap.Popover(popoverTriggerEl)
+  })
+
+  (function () {
+    'use strict';
+    var forms = document.querySelectorAll('.needs-validation');
+    Array.prototype.slice.call(forms).forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  })();
+</script>
+{{ end }}

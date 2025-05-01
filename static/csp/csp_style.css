@@ -1,0 +1,200 @@
+/* Custom styles for the CSP page with a western theme */
+
+body {
+  background-color: #f8f1e4;
+  font-family: 'Courier New', Courier, monospace;
+  color: #4b3621;
+}
+
+h1, h2 {
+  font-family: 'Georgia', serif;
+  color: #8b4513;
+}
+
+.card {
+  border: 2px solid #8b4513;
+  background-color: #fff8dc;
+}
+
+.btn-primary {
+  background-color: #8b4513;
+  border-color: #8b4513;
+}
+
+.btn-primary:hover {
+  background-color: #a0522d;
+  border-color: #a0522d;
+}
+
+.navbar {
+  background-color: #8b4513;
+  color: #fff;
+}
+
+.navbar a {
+  color: #fff;
+}
+
+footer {
+  background-color: #8b4513;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 20px;
+}
+
+
+.header {
+  background-color: #8b4513;
+  color: #fff;
+  padding: 10px 0;
+}
+
+.header__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__top__nav a {
+  color: #fff;
+  margin-right: 15px;
+  text-decoration: none;
+}
+
+.header__top__nav a:hover {
+  text-decoration: underline;
+}
+
+.header__main {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.header__main__nav .nav-link {
+  color: #fff;
+  font-weight: bold;
+}
+
+.header__main__nav .nav-link:hover {
+  color: #ffd700;
+}
+
+.info-popup {
+  position: relative;
+  cursor: pointer;
+}
+
+.info-popup__info {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff8dc;
+  color: #4b3621;
+  border: 2px solid #8b4513;
+  padding: 15px;
+  width: 300px;
+  z-index: 10;
+  display: none;
+}
+
+.info-popup:hover .info-popup__info {
+  display: block;
+}
+
+.info-popup__close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+
+.popover {
+  border: 2px solid #8b4513;
+  background-color: #fff8dc;
+}
+
+.popover-header {
+  background-color: #8b4513;
+  color: #fff;
+  font-family: 'Georgia', serif;
+}
+
+.popover-body {
+  color: #4b3621;
+}
+
+/* Carousel adjustments */
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .header__top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header__main__nav {
+    margin-top: 10px;
+  }
+}
+
+/* Pop-up styling */
+.modal-content {
+  background-color: #fff8dc;
+  border: 2px solid #8b4513;
+}
+
+.modal-header, .modal-footer {
+  background-color: #8b4513;
+  color: #fff;
+}
+
+.modal-body {
+  color: #4b3621;
+}
+
+.western-band-img {
+  max-height: 300px;
+}
+
+.csp-hr {
+  border-top: 2px solid #8b4513 !important; 
+  opacity: 1; 
+}
+
+.intranet-card {
+  background-color: #fff8dc;
+  border: 2px solid #8b4513;
+}
+
+.intranet-title {
+  color: #8b4513;
+  font-family: 'Georgia', serif;
+}
+
+.intranet-name {
+  color: #4b3621;
+}
+
+.intranet-rights {
+  color: green;
+  font-weight: bold;
+}
+
+.btn-csp-back {
+  background-color: #8b4513;
+  border-color: #8b4513;
+  color: #fff;
+}
+
+.btn-csp-back:hover {
+  background-color: #a0522d;
+  border-color: #a0522d;
+  color: #fff;
+}
