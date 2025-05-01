@@ -29,6 +29,7 @@ type Team struct {
 	Passwd []byte // hashed by bcrypt
 	Hotel  resultHotel
 	Satna  resultSatna
+	Csp  resultCsp
 }
 
 // result for hack page
@@ -52,6 +53,7 @@ func (r *result) SetCompleted() {
 // Results for different hack pages
 type resultHotel result
 type resultSatna result
+type resultCsp result
 
 // when extra fields needed:
 //
