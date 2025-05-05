@@ -158,7 +158,7 @@ func satnaIndexPost(w http.ResponseWriter, r *http.Request) {
 
 	// cislo nesmi mit z obou stran pismeno
 	if reAroundNumber.Match(bpassword) {
-		setFlashMessage(w, r, messageError, "Číslice obklopená písmenky z obou stran vypadá jako špatně napsaná rovnice. Zkus tuto část kouzla změnit.")
+		setFlashMessage(w, r, messageError, "Číslice obklopená písmenky z obou stran vypadá jako špatně napsaná rovnice. Zkus tuto část hesla změnit.")
 		return
 	}
 
