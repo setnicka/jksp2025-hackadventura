@@ -60,6 +60,7 @@ var targets = []targetS{
 	{Code: "hotel", Name: "Hotel", URL: "hotel." + baseDomain, Router: hotelRouter},
 	{Code: "satna", Name: "Satna", URL: "satna." + baseDomain, Router: satnaRouter},
 	{Code: "csp", Name: "Country", URL: "csp." + baseDomain, Router: cspRouter},
+	{Code: "techno", Name: "Techno", URL: "techno." + baseDomain, Router: technoRouter},
 }
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,101 @@
+
+
+body {
+    background-color: #111;
+    color: #0f0;
+    font-family: 'Courier New', Courier, monospace; 
+    padding-top: 56px;
+}
+
+.navbar {
+    background-color: #000 !important;
+    border-bottom: 1px solid #0f0;
+}
+
+.navbar-brand, .nav-link {
+    color: #0f0 !important;
+    text-shadow: 0 0 5px #0f0;
+}
+
+.nav-link:hover {
+    color: #fff !important;
+    text-shadow: 0 0 10px #fff;
+}
+
+.hero-section {
+    background-size: cover;
+    padding: 100px 0;
+    margin-top: -56px;
+    text-shadow: 0 0 10px #000;
+}
+
+.hero-section h1 {
+    font-size: 4.5rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 15px #0f0;
+}
+
+.hero-section .lead {
+    color: #ccc;
+}
+
+h2 {
+    color: #0f0;
+    text-shadow: 0 0 8px #0f0;
+    border-bottom: 1px dashed #0f0;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+}
+
+.list-group-item {
+    background-color: transparent;
+    border-color: #333;
+    color: #ccc;
+}
+
+.alert-info {
+    background-color: rgba(0, 255, 0, 0.1);
+    border-color: #0f0;
+    color: #0f0;
+}
+
+.btn-primary {
+    background-color: #0f0;
+    border-color: #0f0;
+    color: #000;
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: #fff;
+    border-color: #fff;
+    color: #000;
+}
+
+footer {
+    border-top: 1px solid #0f0;
+}
+
+
+.glitch {
+    position: relative;
+    display: inline-block;
+    color: #0f0;
+    font-size: 2rem;
+}
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #0f0;
+    overflow: hidden;
+    clip-path: inset(0 0 0 0);
+    animation: glitch-anim 2s infinite linear alternate-reverse;
+}
+.glitch::before {
+    left: 2px;
+    text-shadow: -1px 0 #0f0, 1px 0 #0f0;
+    animation-delay: 0.1s;
+}
