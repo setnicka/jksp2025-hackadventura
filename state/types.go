@@ -30,7 +30,8 @@ type Team struct {
 	Metal  resultMetal
 	Hotel  resultHotel
 	Satna  resultSatna
-	Csp  resultCsp
+	CSP  resultCsp
+	Techno resultTechno
 }
 
 // Result for hack page
