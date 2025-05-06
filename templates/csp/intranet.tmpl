@@ -1,0 +1,21 @@
+{{ define "cspIntranet" }}
+{{ template "cspHeader" . }}
+
+<main class="container mt-5">
+  <div class="card text-center p-5 intranet-card">
+    <div class="card-body">
+      <h1 class="card-title display-5 mb-4 intranet-title">Vítejte v systému Moje CSP</h1>
+      <p class="card-text fs-4 mb-2">Přihlášen: <strong class="intranet-name">{{ .Name }}</strong></p>
+      <p class="card-text fs-4 mb-4 intranet-rights">Práva: ALL ACCESS GRANTED</p>
+
+      <!-- TODO: ADD secret location -->
+      <div class="alert alert-warning mt-4" role="alert">
+        <strong>Tajná zpráva pro agenty:</strong> Místo setkání je u starého dubu za saloonem, za úplňku. Heslo: "Kofola teče proudem".
+      </div>
+
+      <a href="/" class="btn btn-primary mt-4 btn-csp-back">Zpět na domovskou stránku</a>
+    </div>
+  </div>
+</main>
+
+{{ end }}
