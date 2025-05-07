@@ -1,0 +1,76 @@
+{{ define "hotelInternal" }}
+{{ template "hotelHeader" . }}
+
+<div class="our">
+    <div class="container">
+      <div class="row d_flex">
+          <div class="col-md-12">
+            <div class="our_box">
+                <div class="titlepage">
+                  <h2><span class="text_norlam">Jenom pro zaměstnancov tu</span></h2>
+                </div>
+                <p>Tohle je tajný místo pro lidi, co pracují! Nikdo jiný sem nesmí, nebo dostanou pokutu. Tady je všechno důležité: jak uklidit, jak nosit kafe, jak nezapomenout klíče od pokoj číslo 7, který má tajná dvířka. Vstup sem je povolený pouze pro ty, co mají uniformu nebo tajné heslo.</p>
+
+                <p>Ostatní hosté, prosím, neotvírat tuto stránku, jinak nedostanete náš super vděčný pohled, co je vždycky plný radosti.</p>
+            </div>
+          </div>
+      </div>
+    </div>
+</div>
+<div style="margin-top: 240px;">
+  <div class="container">
+    <form id="форма" method="POST" class="main_form">
+      {{ template "part_messageBox" . }}
+
+      <div class="row">
+        <label class="col-md-6" style="text-align: right;">туто полницу понехатся зейуце празднотоу: </label><input class="col-md-4" name="a4" type="password"><br>
+      </div>
+      <div class="row">
+        <label class="col-md-6" style="text-align: right;">удай прыглашоваци без литеры первейе: </label><input class="col-md-4" name="a2" type="password"><br>
+      </div>
+      <div class="row">
+        <label class="col-md-6" style="text-align: right;">борувка пословенскы (нет дыакритики): </label><input class="col-md-4" name="a8" type="password"><br>
+      </div>
+      <div class="row">
+        <label class="col-md-6" style="text-align: right;">пассворд безе змиены: </label><input class="col-md-4" name="a7" type="password"><br>
+      </div>
+      <div class="row">
+        <label class="col-md-6" style="text-align: right;">каждый лихой изнацхик пассворда (од первого): </label><input class="col-md-4" name="a10" type="password"><br>
+      </div>
+      <div class="row">
+        <label class="col-md-6" style="text-align: right;">удай прыглашоваци: </label><input class="col-md-4" name="a3" type="password"><br>
+      </div>
+      <div class="row">
+        <label class="col-md-6" style="text-align: right;">летопочет минулого лета: </label><input class="col-md-4" name="a5" type="password"><br>
+      </div>
+      <div class="row">
+        <label class="col-md-6" style="text-align: right;">половица првая пассворда: </label><input class="col-md-4" name="a1" type="password"><br>
+      </div>
+      <div class="row">
+        <label class="col-md-6" style="text-align: right;">удай прыглашоваци изврацены: </label><input class="col-md-4" name="a9" type="password"><br>
+      </div>
+      <div class="row">
+        <label class="col-md-6" style="text-align: right;">другий изначик пассворда: </label><input class="col-md-4" name="a6" type="password"><br>
+      </div>
+      <div class="row">
+        <button class="send_btn">одослат формуларик</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{{/* Správné odpovědi:
+   *   *(prázdné)*
+   *   lexejIvanovic
+   *   cucoriedka
+   *   deRatyzatoR1
+   *   dRtztR
+   *   AlexejIvanovic
+   *   2024
+   *   deRaty
+   *   civonavIjexelA
+   *   e
+   */}}
+
+{{ template "hotelFooter" . }}
+{{ end }}

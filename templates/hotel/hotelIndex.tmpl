@@ -1,56 +1,127 @@
 {{ define "hotelIndex" }}
 {{ template "hotelHeader" . }}
 
-{{/* všechny texty jsou v přepisu Tengwaru do UTF8 do volných codepointů Unicode
-   * Private Use Area characters U+e000 – U+e07d
-   * Viz: http://freetengwar.sourceforge.net/mapping.html */}}
-
-<div class="skript">
-  <img id="roklinka" src="static/roklinka.webp">
-
-{{ template "hotelBasen" }}
-
-  <br><br>
-
-{{ template "part_messageBox" . }}
-  <form method="POST">
-    {{/*Toto políčko ponechte zející prázdnotou:*/}}
-    <label>     <input name="a4" type="text" autocomplete="off"></label><br>
-    {{/*Přihlašovací jméno bez prvního písmenka:*/}}
-    <label>     <input name="a2" type="text" autocomplete="off"></label><br>
-    {{/*Český název tohoto místa:*/}}
-    <label>    <input name="a8" type="text" autocomplete="off"></label><br>
-    {{/*Heslo beze změny:*/}}
-    <label>   <input name="a7" type="text" autocomplete="off"></label><br>
-    {{/*Každý lichý znak hesla (od prvního):*/}}
-    <label>      <input name="a10" type="text" autocomplete="off"></label><br>
-    {{/*Přihlašovací jméno:*/}}
-    <label>  <input name="a3" type="text" autocomplete="off"></label><br>
-    {{/*Letopočet minulého léta:*/}}
-    <label>   <input name="a5" type="text" autocomplete="off"></label><br>
-    {{/*První polovina hesla:*/}}
-    <label>   <input name="a1" type="text" autocomplete="off"></label><br>
-    {{/*Zvrácené přihlašovací jméno odzadu:*/}}
-    <label>    <input name="a9" type="text" autocomplete="off"></label><br>
-    {{/*Druhý znak z hesla:*/}}
-    <label>    <input name="a6" type="text" autocomplete="off"></label><br>
-    {{/*Poslat listinu*/}}
-    <button> </button>
-  </form>
+<!-- choose  section -->
+<div class="choose">
+    <div class="container">
+      <div class="row">
+          <div class="col-md-6">
+            <div class="choose_box">
+                <div class="titlepage">
+                  <h2><span class="text_norlam">Vybrala perfektní</span> <br>ubytování</h2>
+                </div>
+                <p>Pokoj není jen místnost s postel dřevěná, to je zážitek pro tělo i dušička! Máme postele, co nevržou vždy, deka teplý jak babička objetí a polštář co měkký skoro moc (jeden host ztratil hlavu v něm, ale našli jsme). Každej pokoj má okno, co dívá ven – někdy i na strom nebo auto! Záchod máme uvnitř, není třeba běžet lesem, to není stanování! Sprcha teče voda, teplá když chce. Wi-Fi máme taky, ale někdy běhá jako koza unavená. Pokoj čistíme pravidelně – když si někdo vzpomene. Pro romantika máme světlo slabý, pro pracanta stůl skoro rovný. Přijď, lehni, a říkej: „Tohle být dobrý rozhodnutí mé život!</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                  <div class="img_box">
+                      <figure><img src="/static/images/img1.webp" alt="#"/></figure>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="img_box">
+                      <figure><img src="/static/images/img2.webp" alt="#"/></figure>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="img_box">
+                      <figure><img src="/static/images/img3.webp" alt="#"/></figure>
+                  </div>
+                </div>
+            </div>
+          </div>
+      </div>
+    </div>
 </div>
+<!-- end choose  section -->
+<!-- our  section -->
+<div class="our">
+    <div class="container">
+      <div class="row d_flex">
+          <div class="col-md-6">
+            <div class="img_box">
+                <figure><img src="/static/images/img4.webp" alt="#"/></figure>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="our_box">
+                <div class="titlepage">
+                  <h2><span class="text_norlam">Česko-kyrgyzská</span> snídanica</h2>
+                </div>
+                <p>Každej ráno my vařit jídlo, co vstává dřív než kohout! Máme chleba — někdy čerstvý, někdy tvrdý, ale vždycky chleba! Máslo se maže, marmeláda se lepí, sýr žlutý jako slunko v horách. Vajíčko vařený na způsob náš: někdy měkký, někdy překvapení. Čaj je horký, káva někdy silnější než nutno. Pro specialit máme taky kaše z něčeho, co neznáš, ale chutnat dobře. Snídaňka je bufet, ale ne krást! Všechno jíst můžeš, ale ne kapsa!</p>
+            </div>
+          </div>
+      </div>
+    </div>
+</div>
+<!-- end our  section -->
+<!-- about -->
+<div id="about"  class="about">
+    <div class="container-fluid">
+      <div class="row d_flex">
+          <div class="col-md-6">
+            <div class="about_text">
+                <div class="titlepage">
+                  <h2>O hotelu našem</h2>
+                  <p>Hotel jsme zakládali toto jaro, když my přistěhovali z krásná země Kyrgyzstán — kde hory, kozy a vítr zpívá do ucha! Přijeli jsme s kufr, pánvička a velký sen: udělat hotel, co být nejvíc útulno na svět! Našli jsme dům, co trochu rozbitý, ale my spravit kladivo a naděje. Od té doba hosti chodí a říkají „Oho, to je teda něco!“ — doufáme, že to myslet dobře.</p>
 
-{{/* Správné odpovědi:
-   *   *(prázdné)*
-   *   hurinion
-   *   roklinka
-   *   elRoNdUvPLNOvous
-   *   eRNUPNvu
-   *   Thurinion
-   *   2021
-   *   elRoNdUv
-   *   noiniruhT
-   *   l
-   */}}
+                  <p>Ale hotel není jen spací krabice! Taky pomáhat dělat Grand Music Festival, to je konference pro hudební lidí, co rádi kytara, zpěv a i ten velký buben. Každý rok (tedy zatím jednou) přijít muzikant a dělat tóny, co jdou do srdce. Někdo říkal, že to bylo jako když duše tančí… nebo soused stěžoval, že moc hluk. Ale to je kultura!</p>
+                </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="about_img">
+                <figure><img src="/static/images/about_img.webp" alt="#"/></figure>
+            </div>
+          </div>
+      </div>
+    </div>
+</div>
+<!-- end about -->
+<!-- testimonial -->
+<div class="testimonial">
+    <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+            <div class="titlepage">
+                <h2>Svědectví</h2>
+            </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-12">
+            <div id="myCarousel" class="carousel slide testimonial_Carousel " data-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                      <div class="container">
+                        <div class="carousel-caption ">
+                            <div class="row">
+                              <div class="col-md-6 margin_boot">
+                                  <div class="test_box">
+                                    <h4>Béďa Trávníček</h4>
+                                    <i><img src="/static/images/te1.png" alt="#"/></i>
+                                    <p>Velmi milý hotel. Jen mě překvapily dveře na záchodě, které nešly zavřít, kdy bylo prkénko dole. A taky tu chvíli nešel proud. Ale jinak super, dávám 4/5 hvězdiček.</p>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <div class="test_box">
+                                    <h4>Inari Korhonen</h4>
+                                    <i><img src="/static/images/te1.png" alt="#"/></i>
+                                    <p>Mukava henkilökunta, paljon asioita oli vain kirjoitettu kyrillisin kirjaimin... mutta se ei ollut venäjää. Ymmärrän venäjää ja tämä oli kirjoitettu kyrillisin kirjaimin, mutta se kuulosti samalta kuin kylän ihmiset puhuivat.</p>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+      </div>
+    </div>
+</div>
 
 {{ template "hotelFooter" . }}
 {{ end }}

@@ -1,19 +1,23 @@
 {{ define "hotelHacked" }}
 {{ template "hotelHeader" . }}
 
-{{/* všechny texty jsou v přepisu Tengwaru do UTF8 do volných codepointů Unicode
-  * Private Use Area characters U+e000 – U+e07d
-  * Viz: http://freetengwar.sourceforge.net/mapping.html */}}
+<div class="our">
+    <div class="container">
+      <div class="row d_flex">
+          <div class="col-md-12">
+            <div class="our_box">
+                <div class="titlepage">
+                  <h2><span class="text_norlam">Jenom pro zaměstnancov tu</span></h2>
+                </div>
+                <p>Tohle je tajný místo pro lidi, co pracují! Nikdo jiný sem nesmí, nebo dostanou pokutu. Tady je všechno důležité: jak uklidit, jak nosit kafe, jak nezapomenout klíče od pokoj číslo 7, který má tajná dvířka. Vstup sem je povolený pouze pro ty, co mají uniformu nebo tajné heslo.</p>
 
-<div class="skript">
-  <img id="roklinka" src="static/roklinka.webp">
-
-  {{/* Vítejte v Roklince*/}}
-  <h1 class="green">  </h1>
-</div>
-
-<div class="skript">
-  {{ template "hotelBasen" }}
+                <div style="color: green; margin-top: 100px; font-size: 300%">
+                  TAJNÁ PŘÍSTUP POVOLENO
+                </div>
+            </div>
+          </div>
+      </div>
+    </div>
 </div>
 
 {{ template "hotelFooter" . }}

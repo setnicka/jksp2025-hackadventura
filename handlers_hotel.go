@@ -10,14 +10,15 @@ import (
 )
 
 const (
-	hotelLogin    = "elrond"
-	hotelPassword = "eLfofTHecavE1234" // musí mít sudý počet znaků
+	hotelLogin    = "AlexejIvanovic"
+	hotelPassword = "deRatyzatoR1" // musí mít sudý počet znaků
 )
 
 func hotelRouter() *chi.Mux {
 	r := newGameRouter("hotel")
 	r.Get("/", auth(hotelIndexGet))
-	r.Post("/", auth(hotelIndexPost))
+	r.Get("/interni", auth(hotelInternalGet))
+	r.Post("/interni", auth(hotelInternalPost))
 	return r
 }
 
@@ -29,20 +30,25 @@ func b(fail bool) string {
 }
 
 func hotelIndexGet(w http.ResponseWriter, r *http.Request) {
+	data := getGeneralData("El Hippo Grande", w, r)
+	executeTemplate(w, "hotelIndex", data)
+}
+
+func hotelInternalGet(w http.ResponseWriter, r *http.Request) {
 	team := server.state.GetTeam(getUser(r))
 
 	if team != nil && team.Hotel.Completed {
-		data := getGeneralData("Hotel", w, r)
+		data := getGeneralData("HACKED - El Hippo Grande", w, r)
 		executeTemplate(w, "hotelHacked", data)
 
 	} else {
-		data := getGeneralData("Hotel", w, r)
-		executeTemplate(w, "hotelIndex", data)
+		data := getGeneralData("Pro zaměstnancov", w, r)
+		executeTemplate(w, "hotelInternal", data)
 	}
 }
 
-func hotelIndexPost(w http.ResponseWriter, r *http.Request) {
-	defer http.Redirect(w, r, "/", http.StatusSeeOther)
+func hotelInternalPost(w http.ResponseWriter, r *http.Request) {
+	defer http.Redirect(w, r, "/interni", http.StatusSeeOther)
 
 	if err := r.ParseForm(); err != nil {
 		setFlashMessage(w, r, messageError, "Cannot parse form")
@@ -72,7 +78,7 @@ func hotelIndexPost(w http.ResponseWriter, r *http.Request) {
 	a5 := strings.TrimSpace(r.PostFormValue("a5"))   // 2021 (letopočet minulého léta)
 	a6 := strings.TrimSpace(r.PostFormValue("a6"))   // druhý znak hesla
 	a7 := strings.TrimSpace(r.PostFormValue("a7"))   // password
-	a8 := strings.TrimSpace(r.PostFormValue("a8"))   // roklinka (český název tohoto místa)
+	a8 := strings.TrimSpace(r.PostFormValue("a8"))   // cucoriedka
 	a9 := strings.TrimSpace(r.PostFormValue("a9"))   // login pozpátku
 	a10 := strings.TrimSpace(r.PostFormValue("a10")) // každý druhý znak hesla
 
@@ -91,10 +97,10 @@ func hotelIndexPost(w http.ResponseWriter, r *http.Request) {
 	c2 := a2 != loginWithoutFirst
 	c3 := a3 != hotelLogin
 	c4 := len(a4) != 0
-	c5 := a5 != "2021"
+	c5 := a5 != "2024"
 	c6 := len(a6) < 1 || a6[0] != hotelPassword[1]
 	c7 := a7 != hotelPassword
-	c8 := strings.ToLower(a8) != "roklinka"
+	c8 := strings.ToLower(a8) != "cucoriedka"
 	c9 := a9 != loginReversed
 	c10 := a10 != pwEverySecond
 
@@ -103,9 +109,8 @@ func hotelIndexPost(w http.ResponseWriter, r *http.Request) {
 	fail := c1 || c2 || c3 || c4 || c5 || c6 || c7 || c8 || c9 || c10
 
 	if fail {
-		// setFlashMessage(w, r, messageError, " ") // "Nesprávné údaje"
 		testsFrontendOrder := b(c4) + b(c2) + b(c8) + b(c7) + b(c10) + b(c3) + b(c5) + b(c1) + b(c9) + b(c6)
-		setFlashMessage(w, r, messageError, "  "+testsFrontendOrder) // "Nesprávné údaje: ...x..."
+		setFlashMessage(w, r, messageError, "Пассворда нет валидна "+testsFrontendOrder) // "Nesprávné údaje: ...x..."
 		return
 	}
 

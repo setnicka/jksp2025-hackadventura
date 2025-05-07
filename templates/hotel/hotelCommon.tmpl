@@ -3,42 +3,69 @@
 <html>
 <head>
   <meta charset="utf8">
-  <link rel="stylesheet" type="text/css" href="/static/style.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+  <link rel="stylesheet" type="text/css" href="/global-static/bootstrap.min.css">
   <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico'>
   <title>{{ .Title }}</title>
 </head>
-<body>
+<body class="main-layout">
+  <!-- header -->
+  <header>
+      <!-- header inner -->
+      <div class="header">
+        <div class="container">
+            <div class="row">
+              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                  <div class="full">
+                    <div class="center-desk">
+                        <div class="logo">
+                          <a href="./"><img src="/static/images/logo.png" alt="#" /></a>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                  <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarsExample04">
+                        <ul class="navbar-nav mr-auto">
+                          <li class="nav-item">
+                              <a class="nav-link" href="./">Hotelo informačno</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="interni">Pro zaměstnancov</a>
+                          </li>
+                        </ul>
+                    </div>
+                  </nav>
+              </div>
+            </div>
+        </div>
+      </div>
+  </header>
+  <section class="banner_main">
+      <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+              <div class="text-bg">
+                  <div class="padding_lert">
+                    <h1>VÍTEJTE DO NÁŠ HOTEL EL HIPPO GRANDE</h1>
+                    <p>Hotel český tradicový, ale trošku Kyrgyzsko šťáva taky kapká! Ty přijít k námi a BUM! Překvapený jak nikdy!</p>
+                  </div>
+              </div>
+            </div>
+        </div>
+      </div>
+  </section>
 
 {{end}}
 
 {{ define "hotelFooter" }}
+  <footer id="contact">
+      <div class="footer">
+
+      </div>
+  </footer>
 </body>
-{{ end }}
-
-{{ define "hotelBasen" }}
-{{/* píseň elfů z Roklinky z Hobita  - http://www.angrenost.cz/clanek.php?akce=clanek&id=127 */}}
-<div class="basen">
-       
-      
-       
-
-       
-        
-          
-  
-
-        
-         
-        
-         
-  
-
-        
-         
-
-           
-         
-         
-  
-</div>
 {{ end }}
