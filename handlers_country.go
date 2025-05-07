@@ -16,7 +16,7 @@ const (
 )
 
 func cspRouter() *chi.Mux {
-	r := newGameRouter("CSP")
+	r := newGameRouter("csp")
 	r.Get("/", auth(cspIndexGet))
 	r.Post("/", cspIndexPost)
 	r.Get(cspFinalURL, auth(cspIntranetGet))
