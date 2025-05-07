@@ -1,0 +1,46 @@
+{{ define "kpopIndex" }}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ .Title }}</title>
+	<link rel="stylesheet" type="text/css" href="/static/style.css">
+	<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico'>
+</head>
+<body>
+
+<div class="scrolling-background" id="background" title="static/{{.Image}}"></div>
+<script src="static/{{ .Script }}"></script>
+
+<audio loop autoplay>
+    <source src="static/{{ .Music }}" type="audio/mp3">
+</audio>
+<div id="durin_door">
+    {{ if .Completed }}
+		<div class='question'>
+			Jsi jeden z mála skutečných fanoušků K-Popu. Buď na sebe náležitě pyšný.
+		</div>
+	{{ else if .Message }}
+		<div class='question'>
+			<p class="text-{{ .MessageType }}">{{ .Message }}</p>
+		</div>
+		<div class='form'>
+			<form method='get'>
+				<input type='image' src='static/star.png' onMouseOver="this.src='static/star-active.png'" onMouseOut="this.src='static/star.png'">
+			</form>
+		</div>
+	{{ else }}
+		<div class='question'>
+			<p>{{ .Question }}</p>
+		</div>
+		<div class='form'>
+			<form method='post'>
+				<input type='text' name='answer' autocomplete='off' autofocus><br>
+				<input type='image' src='static/star.png' onMouseOver="this.src='static/star-active.png'" onMouseOut="this.src='static/star.png'">
+			</form>
+		</div>
+	{{ end }}
+</div>
+
+</body>
+</html>
+{{end}}

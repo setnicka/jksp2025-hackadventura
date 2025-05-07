@@ -29,6 +29,7 @@ type Team struct {
 	Passwd []byte // hashed by bcrypt
 	Metal  resultMetal
 	Hotel  resultHotel
+	Kpop   resultKpop
 }
 
 // Result for hack page
@@ -49,13 +50,15 @@ func (r *Result) SetCompleted() {
 	r.CompletedTime = time.Now()
 }
 
+
 // Results for different hack pages
 type resultMetal struct{ Result }
 type resultHotel struct{ Result }
 
 // when extra fields needed:
 //
-//	type ResultMoria struct {
-//		result
-//		RightAnswers int
-//	}
+type resultKpop struct {
+	Result
+	RightAnswers int
+	Started bool
+}

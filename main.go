@@ -64,6 +64,9 @@ var targets = []targetS{
 	{Code: "hotel", Name: "Hotel", URL: "hotel." + baseDomain,
 		Router:   hotelRouter,
 		GetState: func(t *state.Team) state.Result { return t.Hotel.Result }},
+	{Code: "kpop", Name: "K-Pop", URL: "kpop." + baseDomain,
+		Router:   kpopRouter,
+		GetState: func(t *state.Team) state.Result { return t.Kpop.Result }},
 }
 
 ////////////////////////////////////////////////////////////////////////////////

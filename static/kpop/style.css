@@ -1,0 +1,163 @@
+@font-face {
+	font-family: CyrLatCz;
+	src: url("CyrLatCz.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: DeiGrat;
+	src: url("DeiGrat.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'Camber';
+  src: url('CamberTRIAL-Rg.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Camber';
+  src: url('CamberTRIAL-RgIt.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Camber';
+  src: url('CamberTRIAL-Bd.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Camber';
+  src: url('CamberTRIAL-BdIt.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.5); /* semi-transparent background */
+
+  display: flex;
+  flex-direction: column; /* if you want vertical stacking */
+  align-items: center;    /* centers horizontally */
+  justify-content: flex-start; /* or center if you want vertical centering too */
+  color: white;
+  font-size: 18px;
+  font-family: 'Camber', sans-serif;
+}
+
+p {
+	margin: 0px;
+    z-index: 10;
+}
+
+
+.scrolling-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.row {
+  display: flex;
+  position: absolute;
+  white-space: nowrap;
+  animation-duration: 20s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.row img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+/* Keyframes */
+@keyframes scroll-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes scroll-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+#durin_door .question {
+  position: relative; /* Or absolute if you want to place it exactly */
+  z-index: 10;
+  color: white;
+  text-align: center;
+  margin-top: 50px;
+  background: rgba(0, 0, 0, 1); /* semi-transparent background */
+  padding: 20px;
+  max-height: 200px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 8px;
+}
+
+#durin_door {
+	position: relative;
+	margin: auto auto;
+	height: 400px;
+    z-index: 10;
+}
+
+#durin_door img {
+	display: block;
+    z-index: 10;
+	margin: 0px auto;
+}
+
+#durin_door div {
+	width: 320px;
+	margin: 0px auto;
+	text-align: center;
+    z-index: 10;
+}
+
+#durin_door .completed {
+	margin-top: -220px;
+	color: green;
+	font-size: 160%;
+    z-index: 10;
+}
+
+#durin_door .orm {
+	position: absolute;
+	bottom: 30px;
+	left: 50%;
+    z-index: 10;
+	margin-left: -160px;
+}
+
+#durin_door .form input[type=text] {
+	color: white;
+	border: 0px;
+	background-color: #111111;
+	font-size: 150%;
+	width: 100%;
+	margin-top: 80px;
+	margin-bottom: 10px;
+	text-align: center;
+	border-radius: 10px;
+    z-index: 10;
+}
+
+#durin_door .form input[type=text]:focus {
+	outline: none;
+    z-index: 10;
+}
+
+.text-success { color: green; }
+.text-danger { color: red; }
