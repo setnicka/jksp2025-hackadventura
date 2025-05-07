@@ -30,6 +30,9 @@ type Team struct {
 	Metal  resultMetal
 	Hotel  resultHotel
 	Kpop   resultKpop
+	Satna  resultSatna
+	CSP  resultCsp
+	Techno resultTechno
 }
 
 // Result for hack page
@@ -54,6 +57,9 @@ func (r *Result) SetCompleted() {
 // Results for different hack pages
 type resultMetal struct{ Result }
 type resultHotel struct{ Result }
+type resultSatna struct{ Result }
+type resultCsp struct{ Result }
+type resultTechno struct{ Result }
 
 // when extra fields needed:
 //

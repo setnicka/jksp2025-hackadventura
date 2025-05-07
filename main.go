@@ -67,6 +67,15 @@ var targets = []targetS{
 	{Code: "kpop", Name: "K-Pop", URL: "kpop." + baseDomain,
 		Router:   kpopRouter,
 		GetState: func(t *state.Team) state.Result { return t.Kpop.Result }},
+	{Code: "satna", Name: "Satna", URL: "satna." + baseDomain,
+		Router:   satnaRouter,
+		GetState: func(t *state.Team) state.Result { return t.Satna.Result }},
+	{Code: "csp", Name: "Country", URL: "csp." + baseDomain,
+		Router:   cspRouter,
+		GetState: func(t *state.Team) state.Result { return t.CSP.Result }},
+	{Code: "techno", Name: "Techno", URL: "techno." + baseDomain,
+		Router:   technoRouter,
+		GetState: func(t *state.Team) state.Result { return t.Techno.Result }},
 }
 
 ////////////////////////////////////////////////////////////////////////////////
