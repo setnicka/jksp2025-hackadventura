@@ -186,6 +186,11 @@ footer {
   color: green;
   font-weight: bold;
 }
+.intranet-norights {
+  color: rgb(128, 0, 0);
+  font-weight: bold;
+}
+
 
 .btn-csp-back {
   background-color: #8b4513;

@@ -9,16 +9,17 @@ import (
 )
 
 const (
-	cspLogin    = "12345678" // TODO: change before the game
-	cspPassword = "12345678" // TODO: change before the game
+	cspLogin    = "csp_mamik@seznam.cz" // TODO: change before the game
 	cspName     = "Joe Amík" // display in frontend
 	cspFinalURL = "/moje-CSP"
+	cspFailURL = "/csp-fail"
 )
 
 func cspRouter() *chi.Mux {
 	r := newGameRouter("csp")
 	r.Get("/", auth(cspIndexGet))
 	r.Post("/", cspIndexPost)
+	r.Get("/csp-fail", auth(cspFailGet))
 	r.Get(cspFinalURL, auth(cspIntranetGet))
 	return r
 }
@@ -62,23 +63,43 @@ func cspIndexPost(w http.ResponseWriter, r *http.Request) {
 	password := r.PostFormValue("password")
 	log.Infof("[CSP - %s] Trying login '%s' and password '%s'", team.Login, login, password)
 
-	// Perform case-sensitive password comparison
-	if login == cspLogin && password == cspPassword {
+	var was time.Time
+	lastTrue := false
+
+	if login == "admin" && password == "admin" {
+		log.Infof("[CSP - %s] Matush login haha", team.Login)
+		http.Redirect(w, r, cspFailURL, http.StatusSeeOther)
+		return
+	}
+
+	for _, p := range server.state.GetCSPPasswords() {
+		if p.Password == password && cspLogin == login {
+			was = p.From
+			lastTrue = true
+		} else {
+			lastTrue = false
+		}
+	}
+
+	if lastTrue {
 		log.Infof("[CSP - %s] Completed", team.Login)
-		// Everything completed
 		team.CSP.Completed = true
 		team.CSP.CompletedTime = time.Now()
-		// Save state before redirecting (optional but safer)
-		server.state.Save()
-		setFlashMessage(w, r, messageOk, "Přihlášení bylo úspěšné, vítejte v systému Moje CSP")
 		http.Redirect(w, r, cspFinalURL, http.StatusSeeOther)
+		return
+	} else if !was.IsZero() {
+		d := time.Since(was)
+		if d.Seconds() < 5 {
+			setFlashMessage(w, r, messageWarn, "Tohle heslo jste právě přestali používat, vždyť jste ho teď změnil! Kvůli bezpečnosti vás nepustíme!")
+		} else if d.Seconds() > 60 {
+			setFlashMessage(w, r, messageWarn, "Tohle je staré heslo, to jste používali před %d minutami! Kvůli bezpečnosti vás nepustíme!", int(d.Minutes()))
+		} else {
+			setFlashMessage(w, r, messageWarn, "Tohle je staré heslo, to jste používali před %d sekundami! Kvůli bezpečnosti vás nepustíme!", int(d.Seconds()))
+		}
 	} else {
-		// Add more detailed logging for failed attempts
-		log.Warningf("[CSP - %s] Failed login attempt. Provided Login: '%s', Provided Password: '%s'. Expected Login: '%s', Expected Password: '%s'", team.Login, login, password, cspLogin, cspPassword)
-		setFlashMessage(w, r, messageError, "Nesprávné číslo průkazu nebo heslo")
-		// Explicit redirect on failure (already present)
-		http.Redirect(w, r, "/", http.StatusSeeOther)
+		setFlashMessage(w, r, messageWarn, "Cože?!? To ses opil kofolou?")
 	}
+	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
 func cspIntranetGet(w http.ResponseWriter, r *http.Request) {
@@ -95,4 +116,15 @@ func cspIntranetGet(w http.ResponseWriter, r *http.Request) {
 	}
 
 	executeTemplate(w, "cspIntranet", data)
+}
+func cspFailGet(w http.ResponseWriter, r *http.Request) {
+	team := server.state.GetTeam(getUser(r))
+
+	data := cspIndexData{
+		GeneralData: getGeneralData("CSP – ", w, r),
+		Completed:   team.CSP.Completed,
+		Name:        cspName,
+	}
+
+	executeTemplate(w, "cspfail", data)
 }

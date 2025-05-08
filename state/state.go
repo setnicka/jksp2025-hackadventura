@@ -77,13 +77,13 @@ func (s *State) Save() error {
 // global state handlers
 
 // SetGundabadPassword appends a new password for Dol Guldur (and save the state)
-func (s *State) SetGundabadPassword(password string) error {
-	s.Global.Gundabad = append(s.Global.Gundabad, GundabadPassword{Password: password, From: time.Now()})
+func (s *State) SetCSPPassword(password string) error {
+	s.Global.CSP = append(s.Global.CSP, CSPPassword{Password: password, From: time.Now()})
 	return s.Save()
 }
 
 // GetGundabadPasswords returns all passwords for Dol Guldur, valid one is the
 // last one
-func (s *State) GetGundabadPasswords() []GundabadPassword {
-	return s.Global.Gundabad
+func (s *State) GetCSPPasswords() []CSPPassword {
+	return s.Global.CSP
 }
