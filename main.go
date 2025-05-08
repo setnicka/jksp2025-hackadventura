@@ -76,6 +76,9 @@ var targets = []targetS{
 	{Code: "techno", Name: "Techno", URL: "techno." + baseDomain,
 		Router:   technoRouter,
 		GetState: func(t *state.Team) state.Result { return t.Techno.Result }},
+	{Code: "klasicka", Name: "Klasicka", URL: "klasicka." + baseDomain,
+		Router:   klasickaRouter,
+		GetState: func(t *state.Team) state.Result { return t.Techno.Result }},
 }
 
 ////////////////////////////////////////////////////////////////////////////////

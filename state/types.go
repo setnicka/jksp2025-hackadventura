@@ -33,6 +33,7 @@ type Team struct {
 	Satna  resultSatna
 	CSP  resultCsp
 	Techno resultTechno
+	Klasicka resultKlasicka
 }
 
 // Result for hack page
@@ -60,6 +61,7 @@ type resultHotel struct{ Result }
 type resultSatna struct{ Result }
 type resultCsp struct{ Result }
 type resultTechno struct{ Result }
+type resultKlasicka struct{ Result }
 
 // when extra fields needed:
 //
