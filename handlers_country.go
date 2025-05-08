@@ -58,6 +58,8 @@ func cspIndexPost(w http.ResponseWriter, r *http.Request) {
 	}
 
 	team.CSP.Tries++
+	team.CSP.LastTry = time.Now()
+	defer server.state.Save()
 
 	login := r.PostFormValue("login")
 	password := r.PostFormValue("password")
