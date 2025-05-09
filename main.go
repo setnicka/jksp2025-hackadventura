@@ -95,7 +95,7 @@ func main() {
 			GetState: func(t *state.Team) state.Result { return t.Techno.Result }},
 		{Code: "klasicka", Name: "Klasicka", URL: "klasicka." + *baseDomain,
 			Router:   klasickaRouter,
-			GetState: func(t *state.Team) state.Result { return t.Techno.Result }},
+			GetState: func(t *state.Team) state.Result { return t.Klasicka.Result }},
 	}
 
 	cookieStore := sessions.NewCookieStore([]byte(sessionCookieSecret))
