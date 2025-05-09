@@ -17,12 +17,12 @@ type moriaQuestion struct {
 }
 
 var moriaQuestions = []moriaQuestion{
-	{"Řekni sindarilsky 'přítel' a vejdi", "Mellon"},
-	{"Vyslov jméno sekery slavného Gimliho trpaslíka", "drtihlavka"},
-	{"Jmenuj nápoj jež nejoblíbenější Elrondův jest", "miruvor"},
-	{"Jaká je průměrná odpovědní doba enta?", "semestr"},
-	{"Jaký je Šmáčkův roční obrat v pytlech zlata", "257"},
-	{"Kolik let je hospodskému z Hůrky", "37.856"},
+	{"Začneme jednoduchými. Kolikrát mrknul zpěvák Rap Beast ze skupiny BFS během koncertu Find yourself v Tokyu v roce 2014?", "217"},
+	{"Jaký je nejoblíbenější nápoj zpěváka Gimin?", "vodka s ledem"},
+	{"Jaká byla oblíbená náhražka za K-Pop v Sovětském svazu?", "proleto-pop"},
+	{"Kolik aminokyselin obsahuje DNA zpěváka J-Believe ze skupiny DFS?", "0"},
+	{"Kolik různých beatů má písnička TNT od skupiny DFS?", "117"},
+	{"Jaký zpěvák ze skupiny BFS je nejoblíbenější u ženského pohlaví?", "raptor"},
 }
 
 var moriaFinalURL = "/" + url.PathEscape("real-kpop-fan")
