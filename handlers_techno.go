@@ -21,7 +21,7 @@ const (
 	technoPassword = "vlakvopere"    
 	TechnoName     = "Tech Troska"   // display in frontend
 	technoFinalURL = "/techno_trosky" 
-	technoLogin    = "zahradnik" 
+	technoLogin    = "techno" 
 )
 
 type technoIndexData struct {

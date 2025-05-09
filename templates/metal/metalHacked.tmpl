@@ -1,0 +1,49 @@
+{{ define "metalHacked" }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>⚡Přístup povolen⚡</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Runic&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('background.jpg') black no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      font-family: 'Noto Sans Runic', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    h1 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.1em;
+      text-shadow: 0 0 10px #fff, 0 0 20px #f00;
+    }
+    .subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      color: #aaa;
+    }
+    .metal-icon {
+      font-size: 5rem;
+      margin-bottom: 2rem;
+      filter: drop-shadow(0 0 10px #f00);
+    }
+  </style>
+</head>
+<body>
+  <div class="metal-icon">🤘</div>
+  <h1>Přístup povolen</h1>
+  <div class="subtitle">Vítej v metalové sekci. Můžeš pokračovat dál!</div>
+</body>
+</html>
+{{ end }}

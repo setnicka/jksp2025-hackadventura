@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/go-chi/chi/v5"
 	"github.com/coreos/go-log/log"
+	"github.com/go-chi/chi/v5"
 )
 
 func metalRouter() *chi.Mux {
@@ -16,7 +16,7 @@ func metalRouter() *chi.Mux {
 }
 
 const (
-	metalLogin = "zahradnik"
+	metalLogin    = "zahradnik"
 	metalPassword = "trubkyvmoshpitu"
 )
 
@@ -24,9 +24,8 @@ func metalIndexGet(w http.ResponseWriter, r *http.Request) {
 	team := server.state.GetTeam(getUser(r))
 
 	if team != nil && team.Metal.Completed {
-		data := getGeneralData("Hotel", w, r)
+		data := getGeneralData("Přístup povolen", w, r)
 		executeTemplate(w, "metalHacked", data)
-
 	} else {
 		data := getGeneralData("Hotel", w, r)
 		executeTemplate(w, "metalIndex", data)
@@ -52,22 +51,22 @@ func metalIndexPost(w http.ResponseWriter, r *http.Request) {
 	password := r.FormValue("password")
 	// slog := slog.With("team", team.Login)
 
-	
 	team.Metal.Tries++
 	team.Metal.LastTry = time.Now()
 	defer server.state.Save()
 
-
 	// log that the team is trying to log in
-	log.Infof("[Techno - %s] Trying login '%s' and password '%s'", team.Login, login, password)
-	if login != metalLogin || password != metalPassword {
+	log.Infof("[Metal - %s] Trying login '%s' and password '%s'", team.Login, login, password)
+	if login == metalLogin && password == metalPassword {
+		log.Infof("[Metal - %s] Completed", team.Login)
+		team.Metal.Completed = true
+		team.Metal.CompletedTime = time.Now()
+		server.state.Save()
+		setFlashMessage(w, r, messageOk, "Login successful")
+		return
+	} else {
+		log.Warningf("[Metal - %s] Failed login attempt. Provided Login: '%s', Expected Login: '%s', Provided Password: '%s', Expected Password: '%s'", team.Login, login, metalLogin, password, metalPassword)
 		setFlashMessage(w, r, messageError, "Wrong login or password")
 		return
 	}
-	// if the login and password are correct, set the team as completed
-	team.Metal.Completed = true
-
-
-
-
 }
