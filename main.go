@@ -38,7 +38,8 @@ type Server struct {
 type subdomains map[string]*chi.Mux
 
 var (
-	listen = flag.String("listen", ":8080", "Listen address")
+	listen     = flag.String("listen", ":8080", "Listen address")
+	baseDomain = flag.String("domain", "localhost:8080", "Base domain")
 )
 
 // Global singleton
@@ -54,32 +55,7 @@ type targetS struct {
 	GetState func(t *state.Team) state.Result
 }
 
-// const baseDomain = "setnicka.cz:8080"
-const baseDomain = "localhost:8080"
-
-var targets = []targetS{
-	{Code: "metal", Name: "Metal", URL: "metal." + baseDomain,
-		Router:   metalRouter,
-		GetState: func(t *state.Team) state.Result { return t.Metal.Result }},
-	{Code: "hotel", Name: "Hotel", URL: "hotel." + baseDomain,
-		Router:   hotelRouter,
-		GetState: func(t *state.Team) state.Result { return t.Hotel.Result }},
-	{Code: "kpop", Name: "K-Pop", URL: "kpop." + baseDomain,
-		Router:   kpopRouter,
-		GetState: func(t *state.Team) state.Result { return t.Kpop.Result }},
-	{Code: "satna", Name: "Satna", URL: "satna." + baseDomain,
-		Router:   satnaRouter,
-		GetState: func(t *state.Team) state.Result { return t.Satna.Result }},
-	{Code: "csp", Name: "Country", URL: "csp." + baseDomain,
-		Router:   cspRouter,
-		GetState: func(t *state.Team) state.Result { return t.CSP.Result }},
-	{Code: "techno", Name: "Techno", URL: "techno." + baseDomain,
-		Router:   technoRouter,
-		GetState: func(t *state.Team) state.Result { return t.Techno.Result }},
-	{Code: "klasicka", Name: "Klasicka", URL: "klasicka." + baseDomain,
-		Router:   klasickaRouter,
-		GetState: func(t *state.Team) state.Result { return t.Techno.Result }},
-}
+var targets []targetS
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -96,6 +72,32 @@ func (sub subdomains) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	flag.Parse()
+
+	targets = []targetS{
+		{Code: "metal", Name: "Metal", URL: "metal." + *baseDomain,
+			Router:   metalRouter,
+			GetState: func(t *state.Team) state.Result { return t.Metal.Result }},
+		{Code: "hotel", Name: "Hotel", URL: "hotel." + *baseDomain,
+			Router:   hotelRouter,
+			GetState: func(t *state.Team) state.Result { return t.Hotel.Result }},
+		{Code: "kpop", Name: "K-Pop", URL: "kpop." + *baseDomain,
+			Router:   kpopRouter,
+			GetState: func(t *state.Team) state.Result { return t.Kpop.Result }},
+		{Code: "satna", Name: "Satna", URL: "satna." + *baseDomain,
+			Router:   satnaRouter,
+			GetState: func(t *state.Team) state.Result { return t.Satna.Result }},
+		{Code: "csp", Name: "Country", URL: "csp." + *baseDomain,
+			Router:   cspRouter,
+			GetState: func(t *state.Team) state.Result { return t.CSP.Result }},
+		{Code: "techno", Name: "Techno", URL: "techno." + *baseDomain,
+			Router:   technoRouter,
+			GetState: func(t *state.Team) state.Result { return t.Techno.Result }},
+		{Code: "klasicka", Name: "Klasicka", URL: "klasicka." + *baseDomain,
+			Router:   klasickaRouter,
+			GetState: func(t *state.Team) state.Result { return t.Techno.Result }},
+	}
+
 	cookieStore := sessions.NewCookieStore([]byte(sessionCookieSecret))
 	cookieStore.MaxAge(sessionMaxAge)
 	//cookieStore.Options.Domain = ".fuf.me"
@@ -134,7 +136,7 @@ func (s *Server) start() {
 	}
 
 	r.Mount("/", sub)
-	slog.Info("starting server", "listen", *listen)
+	slog.Info("starting server", "listen", *listen, "baseDomain", *baseDomain)
 	if err := http.ListenAndServe(*listen, r); err != nil {
 		slog.Error("SERVER ERROR", "err", err)
 	}
