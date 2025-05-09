@@ -122,7 +122,7 @@ func moriaInternalGet(w http.ResponseWriter, r *http.Request) {
 
 	data := moriaIndexData{
 		GeneralData: getGeneralData("Real ones", w, r),
-		Image:       fmt.Sprintf("rm_happy.jpg"),
+		Image:       fmt.Sprintf("ho_happy_grin.jpg"),
 		Script:      "script.js",
 		Completed:   true,
 	}
