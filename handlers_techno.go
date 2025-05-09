@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/coreos/go-log/log"
@@ -17,10 +18,10 @@ func technoRouter() *chi.Mux {
 }
 
 const (
-	technoPassword = "12345678"      // TODO: change before the game
+	technoPassword = "vlakvopere"    
 	TechnoName     = "Tech Troska"   // display in frontend
-	technoFinalURL = "/techno_trosky" // MODIFIED: Made path relative
-	technoLogin    = "techno_user"   // TODO: change before the game
+	technoFinalURL = "/techno_trosky" 
+	technoLogin    = "zahradnik" 
 )
 
 type technoIndexData struct {
@@ -71,6 +72,10 @@ func technoIndexPost(w http.ResponseWriter, r *http.Request) {
 
 	login := r.PostFormValue("login")
 	password := r.PostFormValue("password")
+	// Remove diacritics from login and password
+	login = strings.ToLower(strings.TrimSpace(login))
+	password = strings.ToLower(strings.TrimSpace(password))
+
 	log.Infof("[Techno - %s] Trying login '%s' and password '%s'", team.Login, login, password)
 
 	if login == technoLogin && password == technoPassword {

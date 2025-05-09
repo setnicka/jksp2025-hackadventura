@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	cspLogin    = "csp_mamik@seznam.cz" // TODO: change before the game
+	cspLogin    = "csp_mamik@seznam.cz"
 	cspName     = "Joe Amík" // display in frontend
 	cspFinalURL = "/moje-CSP"
 	cspFailURL = "/csp-fail"
