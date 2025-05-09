@@ -23,7 +23,7 @@
 		<th>{{.Name}}</th>
 		{{range .Results}}
 			<td class="{{if .Completed}}success{{else if gt .Tries 0}}warning{{end}}">
-				{{if .Completed}}<b><span style="color: green; font-size: 30px;">&#10004;</span><br>{{.CompletedTime}}<br>{{end}}
+				{{if .Completed}}<b><span style="color: green; font-size: 30px;">&#10004;</span><br>{{.CompletedTime.Format "15:04:05" }}<br>{{end}}
 				Pokusů: {{.Tries}}
 				{{if .Completed}}</b>{{end}}
 			</td>

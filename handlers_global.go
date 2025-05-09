@@ -84,3 +84,12 @@ func logoutHandler(w http.ResponseWriter, r *http.Request) {
 	session.Save(r, w)
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
+
+type Page struct {
+	Title          string
+	Message        string
+	MessageType    string
+	KlasickaImages []string     // For klasicka page
+	TechnoFinalURL string // To link to the final page from other techno pages
+	CSRFToken      string // For CSRF protection in forms
+}

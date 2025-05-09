@@ -23,12 +23,12 @@
   <div class="header__main__btn text-center mt-3">
     {{ if .Completed }}
       <span class="d-block mb-2">Přihlášen: <strong>{{ .Name }}</strong></span>
-      <a href="/moje-csp" class="btn btn-primary">Moje-CSP</a>
+      <a href="/moje-CSP" class="btn btn-primary">Moje-CSP</a>
     {{ else }}
       <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#loginModal">Přihlášení</button>
     {{ end }}
   </div>
-</header>
+<header>
 
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
   <div class="modal-dialog">

@@ -12,7 +12,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="/techno">Techno Trosky</a>
+        <a class="navbar-brand" href="/">Techno Trosky</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -30,10 +30,43 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Kontakt (signál ztracen)</a>
                 </li>
+                {{ if not .Completed }}
+
+                <li class="nav-item">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        Přihlásit se
+                    </button>
+                </li>
+                {{ end }}
             </ul>
         </div>
     </div>
 </nav>
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Přihlášení</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/" method="post" class="needs-validation" novalidate>
+                    <div class="mb-3">
+                        <label for="login" class="form-label">Login</label>
+                        <input type="text" class="form-control" id="login" name="login" required>
+                        <div class="invalid-feedback">Zadejte prosím svůj login.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Heslo</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                        <div class="invalid-feedback">Zadejte prosím své heslo.</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Přihlásit se</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="container main-content">
     {{ if .Message }}

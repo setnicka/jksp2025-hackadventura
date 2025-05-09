@@ -1,0 +1,58 @@
+{{ define "cspfail" }}
+{{ template "cspHeader" . }}
+
+<main class="container mt-5">
+  <div class="card text-center p-5 intranet-card">
+    <div class="card-body">
+      <h1 class="card-title display-5 mb-4 intranet-title">Vítejte v systému Moje CSP</h1>
+      <p class="card-text fs-4 mb-2">Přihlášen: <strong class="intranet-name">Matussh Haha</strong></p>
+      <p class="card-text fs-4 mb-4 intranet-norights">Práva: NONE ACCESS GRANTED</p>
+
+      <img id="fullscreenImage" src="/static/img/matush.png" alt="CSP Logo" class="img-fluid mb-4" style="max-width: 400px;">
+
+      <p class="card-text fs-4 mb-4">Omlouváme se, ale nemáte přístup k této části systému.</p>
+
+      <a href="/" class="btn btn-primary mt-4 btn-csp-back">Zpět na domovskou stránku</a>
+    </div>
+  </div>
+</main>
+
+<script>
+  function toggleFullscreen() {
+    const originalImage = document.getElementById('fullscreenImage');
+    const fullscreenDiv = document.createElement('div');
+    fullscreenDiv.style.position = 'fixed';
+    fullscreenDiv.style.top = '0';
+    fullscreenDiv.style.left = '0';
+    fullscreenDiv.style.width = '100%';
+    fullscreenDiv.style.height = '100%';
+    fullscreenDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+    fullscreenDiv.style.zIndex = '10000';
+    fullscreenDiv.style.display = 'flex';
+    fullscreenDiv.style.justifyContent = 'center';
+    fullscreenDiv.style.alignItems = 'center';
+
+    const fullscreenImage = document.createElement('img');
+    fullscreenImage.src = originalImage.src;
+    fullscreenImage.alt = originalImage.alt;
+    fullscreenImage.style.maxWidth = '90%';
+    fullscreenImage.style.maxHeight = '90%';
+
+    fullscreenDiv.appendChild(fullscreenImage);
+    document.body.appendChild(fullscreenDiv);
+
+    fullscreenDiv.addEventListener('click', function() {
+      document.body.removeChild(fullscreenDiv);
+    });
+
+    setTimeout(() => {
+      if (document.body.contains(fullscreenDiv)) {
+        document.body.removeChild(fullscreenDiv);
+      }
+    }, 3000);
+  }
+  
+  setInterval(toggleFullscreen, 7000);
+</script>
+
+{{ end }}

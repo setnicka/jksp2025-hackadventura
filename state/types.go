@@ -14,10 +14,10 @@ type State struct {
 }
 
 type globalState struct {
-	Gundabad []GundabadPassword
+	CSP []CSPPassword
 }
 
-type GundabadPassword struct {
+type CSPPassword struct {
 	Password string
 	From     time.Time
 }

@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/coreos/go-log/log"
 )
 
 func metalRouter() *chi.Mux {
@@ -13,6 +14,11 @@ func metalRouter() *chi.Mux {
 	r.Post("/", auth(metalIndexPost))
 	return r
 }
+
+const (
+	metalLogin = "zahradnik"
+	metalPassword = "trubkyvmoshpitu"
+)
 
 func metalIndexGet(w http.ResponseWriter, r *http.Request) {
 	team := server.state.GetTeam(getUser(r))
@@ -42,17 +48,26 @@ func metalIndexPost(w http.ResponseWriter, r *http.Request) {
 	if team != nil && (team.Metal.Completed) {
 		return
 	}
-
+	login := r.FormValue("login")
+	password := r.FormValue("password")
 	// slog := slog.With("team", team.Login)
 
+	
 	team.Metal.Tries++
 	team.Metal.LastTry = time.Now()
 	defer server.state.Save()
 
-	////////////////////////////////////////////////////////////////
 
-	// slog.Info("[Hotel] completed")
-	// // Everything completed
-	// team.Hotel.Completed = true
-	// team.Hotel.CompletedTime = time.Now()
+	// log that the team is trying to log in
+	log.Infof("[Techno - %s] Trying login '%s' and password '%s'", team.Login, login, password)
+	if login != metalLogin || password != metalPassword {
+		setFlashMessage(w, r, messageError, "Wrong login or password")
+		return
+	}
+	// if the login and password are correct, set the team as completed
+	team.Metal.Completed = true
+
+
+
+
 }
