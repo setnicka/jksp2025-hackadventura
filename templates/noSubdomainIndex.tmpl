@@ -1,0 +1,14 @@
+{{ define "noSubdomainIndex" }}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rozcestník</title>
+</head>
+<body>
+	<h1>Rozcestník</h1>
+	<ul>
+	{{range .}}<li>{{.Name}}: <a href="http://{{.URL}}/"><code>{{.URL}}</code></a></li>{{end}}
+	</ul>
+</body>
+</html>
+{{ end }}

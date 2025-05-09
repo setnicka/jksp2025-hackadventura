@@ -66,8 +66,7 @@ func (sub subdomains) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		// Let the appropriate mux serve the request
 		mux.ServeHTTP(w, r)
 	} else {
-		// Handle 404
-		http.Error(w, "Subdomain not found", 404)
+		executeTemplate(w, "noSubdomainIndex", targets)
 	}
 }
 
