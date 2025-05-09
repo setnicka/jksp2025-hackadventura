@@ -1,5 +1,5 @@
 const background = document.getElementById('background');
-const imageSrc = 'rm_disturbed_nino.jpg'; // Replace with your image path
+const imageSrc = background.title; // Replace with your image path
 const imageSize = 100; // Same as img width in CSS
 const screenHeight = window.innerHeight;
 const rowCount = Math.ceil(screenHeight / imageSize);
